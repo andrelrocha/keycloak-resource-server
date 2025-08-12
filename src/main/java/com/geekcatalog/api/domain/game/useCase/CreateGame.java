@@ -17,7 +17,7 @@ public class CreateGame {
 
     @Transactional
     public GameReturnDTO create(GameDTO data) {
-        validator.validateNewGame(data.name());
+        validator.validateNameNotExists(data.name());
 
         var game = new Game(data);
 

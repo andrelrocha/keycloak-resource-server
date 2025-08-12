@@ -1,6 +1,7 @@
 package com.geekcatalog.api.controller;
 
 import com.geekcatalog.api.dto.game.GameDTO;
+import com.geekcatalog.api.dto.game.GameUpdateDTO;
 import com.geekcatalog.api.dto.utils.ApiResponseDTO;
 import com.geekcatalog.api.dto.game.GameReturnDTO;
 import com.geekcatalog.api.service.GameService;
@@ -60,5 +61,11 @@ public class GamesController {
     public ResponseEntity<Void> delete(@PathVariable String gameId) {
         service.deleteGame(gameId);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{gameId}")
+    public ResponseEntity<ApiResponseDTO<GameReturnDTO>> update(@PathVariable String gameId, @RequestBody GameUpdateDTO data) {
+        var updatedGame = service.updateGame(gameId, data);
+        return ResponseEntity.ok(ApiResponseDTO.success(updatedGame));
     }
 }

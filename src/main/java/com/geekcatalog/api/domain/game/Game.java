@@ -1,6 +1,7 @@
 package com.geekcatalog.api.domain.game;
 
 import com.geekcatalog.api.dto.game.GameDTO;
+import com.geekcatalog.api.dto.game.GameUpdateDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -52,4 +53,18 @@ public class Game {
         this.description = data.description();
         this.releaseYear = data.releaseYear();
     }
+
+    public void updateGame(GameUpdateDTO dto) {
+        if (dto.name() != null && !dto.name().isEmpty()) {
+            this.name = dto.name();
+        }
+        if (dto.releaseYear() != null) {
+            this.releaseYear = dto.releaseYear();
+        }
+
+        if (dto.description() != null && !dto.description().isEmpty()) {
+            this.description = dto.description();
+        }
+    }
+
 }
