@@ -1,5 +1,6 @@
 package com.geekcatalog.api.domain.game;
 
+import com.geekcatalog.api.dto.game.GameDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -44,5 +45,11 @@ public class Game {
     @PreUpdate
     public void preUpdate() {
         this.updatedAt = LocalDateTime.now();
+    }
+
+    public Game(GameDTO data) {
+        this.name = data.name();
+        this.description = data.description();
+        this.releaseYear = data.releaseYear();
     }
 }

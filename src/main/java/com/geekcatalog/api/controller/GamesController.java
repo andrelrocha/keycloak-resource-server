@@ -1,14 +1,17 @@
 package com.geekcatalog.api.controller;
 
+import com.geekcatalog.api.dto.game.GameDTO;
 import com.geekcatalog.api.dto.utils.ApiResponseDTO;
 import com.geekcatalog.api.dto.game.GameReturnDTO;
 import com.geekcatalog.api.service.GameService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,5 +48,11 @@ public class GamesController {
         );
 
         return ResponseEntity.ok(ApiResponseDTO.success(result));
+    }
+
+    @PostMapping
+    public ResponseEntity<ApiResponseDTO<GameReturnDTO>> create(@RequestBody @Valid GameDTO data) {
+        var gameOnDB = service.create(data);
+        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponseDTO.success(gameOnDB));
     }
 }
