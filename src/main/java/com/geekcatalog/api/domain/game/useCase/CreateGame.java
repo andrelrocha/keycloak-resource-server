@@ -5,6 +5,7 @@ import com.geekcatalog.api.domain.game.GameRepository;
 import com.geekcatalog.api.domain.game.validator.GameValidator;
 import com.geekcatalog.api.dto.game.GameDTO;
 import com.geekcatalog.api.dto.game.GameReturnDTO;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,7 @@ public class CreateGame {
     private final GameRepository repository;
     private final GameValidator validator;
 
+    @Transactional
     public GameReturnDTO create(GameDTO data) {
         validator.validateNewGame(data.name());
 

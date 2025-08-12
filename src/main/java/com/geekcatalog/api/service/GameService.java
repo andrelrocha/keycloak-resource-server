@@ -1,6 +1,7 @@
 package com.geekcatalog.api.service;
 
 import com.geekcatalog.api.domain.game.useCase.CreateGame;
+import com.geekcatalog.api.domain.game.useCase.DeleteGame;
 import com.geekcatalog.api.domain.game.useCase.GetGames;
 import com.geekcatalog.api.dto.game.GameDTO;
 import com.geekcatalog.api.dto.game.GameReturnDTO;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class GameService {
     private final CreateGame createGame;
+    private final DeleteGame deleteGame;
     private final GetGames getGames;
 
     public Page<GameReturnDTO> getGamesPageable(
@@ -27,5 +29,9 @@ public class GameService {
 
     public GameReturnDTO create(GameDTO data) {
         return createGame.create(data);
+    }
+
+    public void deleteGame(String gameId) {
+        deleteGame.deleteGame(gameId);
     }
 }

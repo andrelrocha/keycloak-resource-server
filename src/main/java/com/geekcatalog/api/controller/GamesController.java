@@ -55,4 +55,10 @@ public class GamesController {
         var gameOnDB = service.create(data);
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponseDTO.success(gameOnDB));
     }
+
+    @DeleteMapping("/{gameId}")
+    public ResponseEntity<Void> delete(@PathVariable String gameId) {
+        service.deleteGame(gameId);
+        return ResponseEntity.noContent().build();
+    }
 }

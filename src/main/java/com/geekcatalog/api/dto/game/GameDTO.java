@@ -1,4 +1,6 @@
 package com.geekcatalog.api.dto.game;
 
-public record GameDTO(String name, String description, Integer releaseYear) {
+import jakarta.validation.constraints.NotEmpty;
+
+public record GameDTO(@NotEmpty String name, String description, @NotEmpty Integer releaseYear) {
 }
