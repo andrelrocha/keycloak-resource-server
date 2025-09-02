@@ -4,18 +4,5 @@ CREATE TABLE game (
     description TEXT,
     release_year INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-
-CREATE OR REPLACE FUNCTION set_updated_at_game()
-RETURNS TRIGGER AS $$
-BEGIN
-    NEW.updated_at := CURRENT_TIMESTAMP;
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER trigger_set_updated_at_game
-BEFORE UPDATE ON game
-FOR EACH ROW
-EXECUTE FUNCTION set_updated_at_game();
