@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
-@Tag(name = "User routes mapped on Controller.")
+@Tag(name = "User")
 @AllArgsConstructor
 public class UsersController {
     private final UserService service;
@@ -31,7 +31,7 @@ public class UsersController {
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponseDTO<UserReturnDTO>> create(@RequestBody @Valid UserDTO data) {
+    public ResponseEntity<ApiResponseDTO<UserReturnDTO>> createUser(@RequestBody @Valid UserDTO data) {
         var newUserDTO = service.create(data);
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponseDTO.success(newUserDTO));
     }
