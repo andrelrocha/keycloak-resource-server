@@ -22,14 +22,14 @@ public class SpringDocConfigurations {
                                         .scheme("bearer")
                                         .bearerFormat("JWT")))
                 .info(new Info()
-                        .title("GeekCatalog API")
+                        .title("GeekCatalogAPI")
                         .description("API Rest da aplicação GeekCatalog")
                         .contact(new Contact()
                                 .name("Andre Rocha")
                                 .email("andre.lucio@aluno.uece.br"))
                         .license(new License()
                                 .name("Apache 2.0")
-                                .url("http://voll.med/api/licenca")));
+                                .url("http://andrerocha.com/api/licenca")));
     }
 
 }
