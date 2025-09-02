@@ -2,6 +2,7 @@ package com.geekcatalog.api.domain.gameRating;
 
 import com.geekcatalog.api.domain.game.Game;
 import com.geekcatalog.api.domain.user.User;
+import com.geekcatalog.api.dto.gameRating.GameRatingDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -46,5 +47,17 @@ public class GameRating {
     @PreUpdate
     protected void onUpdate() {
         this.updatedAt = LocalDateTime.now();
+    }
+
+    public GameRating(GameRatingDTO data, User user, Game game) {
+        this.rating = data.rating();
+        this.user =  user;
+        this.game = game;
+    }
+
+    public void updateRating(GameRatingDTO data) {
+        if (data.rating() != null) {
+            this.rating = data.rating();
+        }
     }
 }

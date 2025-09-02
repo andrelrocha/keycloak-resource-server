@@ -1,18 +1,18 @@
 package com.geekcatalog.api.dto.gameRating;
 
 import com.geekcatalog.api.domain.gameRating.GameRating;
+import com.geekcatalog.api.dto.game.GameReturnDTO;
+import com.geekcatalog.api.dto.user.UserReturnDTO;
 
 public record GameRatingReturnDTO(
-        String id,
-        String userId,
-        String gameId,
+        UserReturnDTO user,
+        GameReturnDTO game,
         Integer rating
 ) {
     public GameRatingReturnDTO(GameRating gameRating) {
         this(
-                gameRating.getId(),
-                gameRating.getUser() != null ? gameRating.getUser().getId() : null,
-                gameRating.getGame() != null ? gameRating.getGame().getId() : null,
+                gameRating.getUser() != null ? new UserReturnDTO(gameRating.getUser()) : null,
+                gameRating.getGame() != null ? new GameReturnDTO(gameRating.getGame()) : null,
                 gameRating.getRating()
         );
     }

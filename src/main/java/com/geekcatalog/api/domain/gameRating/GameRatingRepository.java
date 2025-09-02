@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface GameRatingRepository extends JpaRepository<GameRating, String>, JpaSpecificationExecutor<GameRating> {
 
+    GameRating findByUserIdAndGameId(String userId, String gameId);
 }

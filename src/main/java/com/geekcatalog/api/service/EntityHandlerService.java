@@ -2,6 +2,8 @@ package com.geekcatalog.api.service;
 
 import com.geekcatalog.api.domain.country.Country;
 import com.geekcatalog.api.domain.country.useCase.GetCountryEntityById;
+import com.geekcatalog.api.domain.game.Game;
+import com.geekcatalog.api.domain.game.useCase.GetGameEntityById;
 import com.geekcatalog.api.domain.role.Role;
 import com.geekcatalog.api.domain.role.useCase.GetListRoleEntitiesByNames;
 import com.geekcatalog.api.domain.role.useCase.GetRoleEntityById;
@@ -16,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EntityHandlerService {
     private final GetCountryEntityById getCountryEntityById;
+    private final GetGameEntityById getGameEntityById;
     private final GetRoleEntityById getRoleEntityById;
     private final GetListRoleEntitiesByNames getListRoleEntitiesByNames;
     private final GetUserEntityById getUserEntityById;
@@ -23,6 +26,8 @@ public class EntityHandlerService {
     public Country getCountryById(String id) {
         return getCountryEntityById.getCountryById(id);
     }
+
+    public Game getGameById(String id) { return getGameEntityById.getGameById(id); }
 
     public User getUserById(String id) {
         return getUserEntityById.getUserById(id);
