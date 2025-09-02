@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/games")
-@Tag(name = "Game routes mapped on Controller.")
+@Tag(name = "Game")
 @RequiredArgsConstructor
 public class GamesController {
     private final GameService service;
@@ -52,19 +52,19 @@ public class GamesController {
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponseDTO<GameReturnDTO>> create(@RequestBody @Valid GameDTO data) {
+    public ResponseEntity<ApiResponseDTO<GameReturnDTO>> createGames(@RequestBody @Valid GameDTO data) {
         var gameOnDB = service.create(data);
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponseDTO.success(gameOnDB));
     }
 
     @DeleteMapping("/{gameId}")
-    public ResponseEntity<Void> delete(@PathVariable String gameId) {
+    public ResponseEntity<Void> deleteGames(@PathVariable String gameId) {
         service.deleteGame(gameId);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{gameId}")
-    public ResponseEntity<ApiResponseDTO<GameReturnDTO>> update(@PathVariable String gameId, @RequestBody GameUpdateDTO data) {
+    public ResponseEntity<ApiResponseDTO<GameReturnDTO>> updateGames(@PathVariable String gameId, @RequestBody GameUpdateDTO data) {
         var updatedGame = service.updateGame(gameId, data);
         return ResponseEntity.ok(ApiResponseDTO.success(updatedGame));
     }
