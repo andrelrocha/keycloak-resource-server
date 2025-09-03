@@ -8,6 +8,6 @@ CREATE TABLE refresh_token_log (
     user_agent TEXT,
     ip_address TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT fk_user_refresh FOREIGN KEY (user_id) REFERENCES app_user(id) ON DELETE CASCADE
 );
