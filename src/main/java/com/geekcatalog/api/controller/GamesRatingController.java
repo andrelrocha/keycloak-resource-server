@@ -1,13 +1,9 @@
 package com.geekcatalog.api.controller;
 
-import com.geekcatalog.api.dto.game.GameDTO;
-import com.geekcatalog.api.dto.game.GameReturnDTO;
-import com.geekcatalog.api.dto.game.GameUpdateDTO;
 import com.geekcatalog.api.dto.gameRating.GameRatingDTO;
 import com.geekcatalog.api.dto.gameRating.GameRatingReturnDTO;
 import com.geekcatalog.api.dto.utils.ApiResponseDTO;
 import com.geekcatalog.api.service.GameRatingService;
-import com.geekcatalog.api.service.GameService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -33,17 +29,15 @@ public class GamesRatingController {
         return ResponseEntity.status(status).body(ApiResponseDTO.success(result.dto()));
     }
 
-    /*
     @GetMapping
-    public ResponseEntity<ApiResponseDTO<Page<GameReturnDTO>>> getGames(
+    public ResponseEntity<ApiResponseDTO<Page<GameRatingReturnDTO>>> getGameRatings(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size,
-            @RequestParam(defaultValue = "name") String sortField,
-            @RequestParam(defaultValue = "asc") String sortOrder,
-            @RequestParam(required = false) String id,
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) Integer startYear,
-            @RequestParam(required = false) Integer endYear
+            @RequestParam(defaultValue = "createdAt") String sortField,
+            @RequestParam(defaultValue = "desc") String sortOrder,
+            @RequestParam(required = false) String userId,
+            @RequestParam(required = false) String gameId,
+            @RequestParam(required = false) String gameName
     ) {
         Pageable pageable = PageRequest.of(
                 page,
@@ -51,18 +45,13 @@ public class GamesRatingController {
                 Sort.by(Sort.Direction.fromString(sortOrder), sortField)
         );
 
-        Page<GameReturnDTO> result = service.getGamesPageable(
+        Page<GameRatingReturnDTO> result = service.getRatingsPageable(
                 pageable,
-                id,
-                name,
-                startYear,
-                endYear
+                userId,
+                gameId,
+                gameName
         );
 
         return ResponseEntity.ok(ApiResponseDTO.success(result));
     }
-
-     */
-
-
 }
